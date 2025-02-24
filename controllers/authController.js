@@ -29,6 +29,13 @@ const authController = {
       res.status(500).json({ message: "Login failed" });
     }
   },
+  logout: async (req, res) => {
+    try {
+      res.json({ message: "Logout successful" });
+    } catch (err) {
+      res.status(500).json({ message: "Logout failed" });
+    }
+  },
 };
 
 module.exports = authController;
