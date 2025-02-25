@@ -6,7 +6,7 @@ const taskController = {
     const userId = req.user.id;
     try {
       const taskId = await Task.create(userId, title, description);
-      res.status(201).json({ taskId });
+      res.redirect("/tasks"); // Redirect to tasks page after creation
     } catch (err) {
       res.status(500).json({ message: "Task creation failed" });
     }
@@ -15,9 +15,9 @@ const taskController = {
     const userId = req.user.id;
     try {
       const tasks = await Task.findAllByUserId(userId);
-      res.json(tasks);
+      res.render("tasks/index", { tasks }); // Render EJS view
     } catch (err) {
-      res.status(500).json({ message: "Failed to fetch tasks" });
+      res.status(500).send("Failed to fetch tasks");
     }
   },
   updateTask: async (req, res) => {
@@ -25,7 +25,7 @@ const taskController = {
     const { title, description, completed } = req.body;
     try {
       await Task.update(id, title, description, completed);
-      res.json({ message: "Task updated" });
+      res.redirect("/tasks"); // Redirect after update
     } catch (err) {
       res.status(500).json({ message: "Task update failed" });
     }
@@ -34,7 +34,7 @@ const taskController = {
     const { id } = req.params;
     try {
       await Task.delete(id);
-      res.json({ message: "Task deleted" });
+      res.redirect("/tasks"); // Redirect after deletion
     } catch (err) {
       res.status(500).json({ message: "Task deletion failed" });
     }
