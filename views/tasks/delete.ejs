@@ -6,7 +6,7 @@
   </head>
   <body>
     <h2>Delete Tugas</h2>
-    <form action="/tasks/delete/<%= task.id %>" method="POST">
+    <form action="/tasks/delete/<%= task.id %>" method="DELETE">
       <button type="submit" onclick="return confirm('Apakah kamu yakin ingin menghapus task ini?');">
           Hapus
       </button>

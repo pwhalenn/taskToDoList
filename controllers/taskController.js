@@ -1,38 +1,34 @@
 const Task = require("../models/taskModel");
 
 const taskController = {
-  // Menampilkan halaman tambah tugas
-  createTaskPage: (req, res) => {
-    res.render("tasks/create");
-  },
-
-  // Menyimpan task ke database
+  // Simpan task ke database
   createTask: async (req, res) => {
+    res.render("tasks/create");
     const { title, category, deadline, status } = req.body;
-    const userId = req.user.id; // Ambil user ID dari session/token
+    const userId = req.user.id;
 
     try {
       await Task.create(userId, title, category, status, deadline);
-      res.redirect("/tasks"); // Redirect ke halaman tugas
+      res.redirect("/tasks");
     } catch (err) {
       console.error("Error saat membuat task:", err);
       res.status(500).json({ message: "Task creation failed" });
     }
   },
 
-  // Menampilkan semua task milik user
+  // Tampil semua task
   getTasks: async (req, res) => {
     const userId = req.user.id;
     try {
       const tasks = await Task.findAllByUserId(userId);
-      res.render("tasks/index", { tasks }); // Render tampilan EJS
+      res.render("tasks/index", { tasks });
     } catch (err) {
       console.error("Error saat mengambil tasks:", err);
       res.status(500).send("Failed to fetch tasks");
     }
   },
 
-  // Menampilkan halaman edit task
+  // Ke edit forum
   editTaskPage: async (req, res) => {
     try {
       const task = await Task.findById(req.params.id);
@@ -46,8 +42,9 @@ const taskController = {
     }
   },
 
-  // Mengupdate task di database
+  // Simpan update tasknya
   updateTask: async (req, res) => {
+    res.render("tasks/edit", { task });
     const { id } = req.params;
     const { title, category, deadline, status } = req.body;
 
@@ -63,7 +60,7 @@ const taskController = {
     }
   },
 
-  // Menghapus task dari database
+  // Menghapus task
   deleteTask: async (req, res) => {
     const { id } = req.params;
 
@@ -72,7 +69,7 @@ const taskController = {
         if (!isDeleted) {
             return res.status(404).json({ message: "Task not found" });
         }
-        res.redirect("/tasks");
+        res.redirect("/tasks", { task });
     } catch (err) {
         console.error("Error saat menghapus task:", err);
         res.status(500).json({ message: "Task deletion failed" });

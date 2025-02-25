@@ -2,14 +2,14 @@ const db = require("../config/db");
 
 const Task = {
   // Menambahkan tugas baru ke database
-  create: async (userId, title, category, status, deadline) => {
-    await db
-      .promise()
-      .query(
-        "INSERT INTO tasks (user_id, title, category, status, deadline) VALUES (?, ?, ?, ?, ?)",
-        [userId, title, category, status, deadline]
-      );
-  },
+    create: async (userId, title, category, status, deadline) => {
+      await db
+        .promise()
+        .query(
+          "INSERT INTO tasks (user_id, title, category, status, deadline) VALUES (?, ?, ?, ?, ?)",
+          [userId, title, category, status, deadline]
+        );
+    },
 
   // Mengambil semua tugas berdasarkan user_id
   findAllByUserId: async (userId) => {
