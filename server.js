@@ -21,6 +21,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 const session = require("express-session");
 
+const methodOverride = require("method-override");
+
+app.use(methodOverride("_method"));
+
 // Gunakan session middleware
 app.use(
   session({

@@ -12,8 +12,9 @@
       <table class="table table-bordered mt-3">
         <thead>
           <tr>
-            <th>Judul</th>
-            <th>Deskripsi</th>
+            <th>Nama Tugas</th>
+            <th>Kategori</th>
+            <th>Deadline</th>
             <th>Status</th>
             <th>Aksi</th>
           </tr>
@@ -22,11 +23,12 @@
             <% tasks.forEach(task => { %>
             <tr>
                 <td><%= task.title %></td>
-                <td><%= task.description %></td>
-                <td><%= task.completed ? "Selesai" : "Belum Selesai" %></td>
+                <td><%= task.category %></td>
+                <td><%= task.deadline %></td>
+                <td><%= task.status %></td>
                 <td>
-                <a href="/tasks/edit/<%= task._id %>" class="btn btn-warning btn-sm">Edit</a>
-                <a href="/tasks/delete/<%= task._id %>" class="btn btn-danger btn-sm">Hapus</a>
+                <a href="/tasks/edit/<%= task.id %>" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/tasks/delete/<%= task.id %>" class="btn btn-danger btn-sm">Hapus</a>
                 </td>
             </tr>
             <% }) %>
