@@ -124,7 +124,7 @@
                 document.getElementById('editDeadline').value = this.dataset.deadline;
                 document.getElementById('editStatus').value = this.dataset.status;
                 
-                document.getElementById('editTaskForm').action = `/tasks/edit/${this.dataset.id}`;
+                document.getElementById('editTaskForm').action = `/tasks/${this.dataset.id}`;
             });
         });
     </script>
