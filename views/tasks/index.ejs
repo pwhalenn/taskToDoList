@@ -8,7 +8,8 @@
   <body>
     <div class="container mt-4">
       <h2>Daftar Tugas</h2>
-      <a href="/tasks/create" class="btn btn-primary">Tambah Tugas</a>
+      <button id="toggleForm" class="btn btn-primary">Tambah Tugas</button>
+      
       <table class="table table-bordered mt-3">
         <thead>
           <tr>
@@ -19,21 +20,54 @@
             <th>Aksi</th>
           </tr>
         </thead>
-            <tbody>
-            <% tasks.forEach(task => { %>
-            <tr>
-                <td><%= task.title %></td>
-                <td><%= task.category %></td>
-                <td><%= task.deadline %></td>
-                <td><%= task.status %></td>
-                <td>
+        <tbody>
+          <% tasks.forEach(task => { %>
+          <tr>
+            <td><%= task.title %></td>
+            <td><%= task.category %></td>
+            <td><%= task.deadline %></td>
+            <td><%= task.status %></td>
+            <td>
                 <a href="/tasks/edit/<%= task.id %>" class="btn btn-warning btn-sm">Edit</a>
-                <a href="/tasks/delete/<%= task.id %>" class="btn btn-danger btn-sm">Hapus</a>
-                </td>
-            </tr>
-            <% }) %>
-            </tbody>
+                <form action="/tasks/delete/<%= task.id %>" method="POST">
+                    <button type="submit" class="btn btn-danger btn-sm" >Delete</button>
+                </form>
+            </td>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
       </table>
+
+      <div id="taskForm" class="mt-4" style="display: none;">
+        <h2>Tambah Tugas</h2>
+        <form action="/tasks" method="POST">
+          <div class="mb-3">
+            <input type="text" name="title" class="form-control" placeholder="Nama Tugas" required />
+          </div>
+          <div class="mb-3">
+            <input type="text" name="category" class="form-control" placeholder="Kategori" required />
+          </div>
+          <div class="mb-3">
+            <input type="date" name="deadline" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <input type="text" name="status" class="form-control" placeholder="Status" required />
+          </div>
+          <button type="submit" class="btn btn-success">Simpan</button>
+        </form>
+      </div>
     </div>
+
+    <script>
+      document.getElementById('toggleForm').addEventListener('click', function () {
+        var form = document.getElementById('taskForm');
+        if (form.style.display === 'none') {
+          form.style.display = 'block';
+        } else {
+          form.style.display = 'none';
+        }
+      });
+    </script>
   </body>
 </html>

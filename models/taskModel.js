@@ -6,8 +6,8 @@ const Task = {
       await db
         .promise()
         .query(
-          "INSERT INTO tasks (user_id, title, category, status, deadline) VALUES (?, ?, ?, ?, ?)",
-          [userId, title, category, status, deadline]
+          "INSERT INTO tasks (user_id, title, category, deadline, status) VALUES (?, ?, ?, ?, ?)",
+          [userId, title, category, deadline, status]
         );
     },
 
@@ -20,20 +20,20 @@ const Task = {
   },
 
   // Mengambil satu tugas berdasarkan ID (untuk edit)
-  findById: async (taskId) => {
+  findById: async (id) => {
     const [rows] = await db
       .promise()
-      .query("SELECT * FROM tasks WHERE id = ?", [taskId]);
+      .query("SELECT * FROM tasks WHERE id = ?", [id]);
     return rows[0]; // Mengembalikan satu objek tugas
   },
 
   // Memperbarui tugas berdasarkan ID
-  update: async (taskId, title, category, status, deadline) => {
+  update: async (id, title, category, deadline, status) => {
     await db
       .promise()
       .query(
         "UPDATE tasks SET title = ?, category = ?, status = ?, deadline = ? WHERE id = ?",
-        [title, category, status, deadline, taskId]
+        [title, category, deadline, status, id]
       );
   },
 
@@ -49,10 +49,6 @@ const Task = {
     return result.affectedRows > 0; // Return true jika berhasil dihapus
   },
 
-  // Menghapus tugas berdasarkan ID
-  delete: async (taskId) => {
-    await db.promise().query("DELETE FROM tasks WHERE id = ?", [taskId]);
-  },
 };
 
 module.exports = Task;

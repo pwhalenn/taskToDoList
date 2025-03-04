@@ -2,16 +2,13 @@ const Task = require("../models/taskModel");
 
 const taskController = {
   // Simpan task ke database
+
   createTask: async (req, res) => {
-    res.render("tasks/create");
     const { title, category, deadline, status } = req.body;
     const userId = req.user.id;
-
     try {
-      await Task.create(userId, title, category, status, deadline);
-      res.redirect("/tasks");
+      const id = await Task.create(userId, title, category, deadline, status);
     } catch (err) {
-      console.error("Error saat membuat task:", err);
       res.status(500).json({ message: "Task creation failed" });
     }
   },
@@ -21,7 +18,7 @@ const taskController = {
     const userId = req.user.id;
     try {
       const tasks = await Task.findAllByUserId(userId);
-      res.render("tasks/index", { tasks });
+      res.render("tasks", { tasks });
     } catch (err) {
       console.error("Error saat mengambil tasks:", err);
       res.status(500).send("Failed to fetch tasks");
@@ -44,7 +41,6 @@ const taskController = {
 
   // Simpan update tasknya
   updateTask: async (req, res) => {
-    res.render("tasks/edit", { task });
     const { id } = req.params;
     const { title, category, deadline, status } = req.body;
 
@@ -63,16 +59,11 @@ const taskController = {
   // Menghapus task
   deleteTask: async (req, res) => {
     const { id } = req.params;
-
     try {
-        const isDeleted = await Task.deleteById(id);
-        if (!isDeleted) {
-            return res.status(404).json({ message: "Task not found" });
-        }
-        res.redirect("/tasks", { task });
+      await Task.delete(id);
+      res.json({ message: "Task deleted" });
     } catch (err) {
-        console.error("Error saat menghapus task:", err);
-        res.status(500).json({ message: "Task deletion failed" });
+      res.status(500).json({ message: "Task deletion failed" });
     }
   },
 };
