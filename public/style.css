@@ -1,50 +1,203 @@
+/* Variabel warna */
+:root {
+    --primary-color: #008080; /* Hijau kebiruan */
+    --accent-color: #DAA520; /* Gold */
+    --background-color: #F5F5F5; /* Putih abu-abu */
+    --text-color: #333;
+    --font-family: 'Poppins', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
+    justify-content: center;
+    min-height: 100vh;
 }
-  
+
+.auth-container {
+    max-width: 80%;
+    min-width: 32%;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 .container {
-    width: 100%;
-    max-width: 400px;
-    background: white;
+    max-width: 80%;
+    margin: auto;
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: white;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
     text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: bold;;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 100%;
+}
+
+.button-form {
+    display: block;
+    width: auto;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px auto;
 }
 
 
-input {
-    width: calc(100% - 20px);
+input, button {
+    width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 8px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: #28a745;
+    background-color: var(--primary-color);
     color: white;
-    font-size: 16px;
-    border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
 }
 
 button:hover {
-    background: #218838;
+    background-color: #006666;
 }
 
-form {
+.button-create {
+    width: 160px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: rgb(64, 191, 102);
+    color: white;
+    border-radius: 8px;
     display: flex;
-    flex-direction: column;
-}  
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button-toggle-form:hover {
+    background-color: #006666;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+}
+
+.button-edit {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.button-edit:hover {
+    background-color: #006666;
+}
+
+.button-delete {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.button-delete:hover {
+    color: darkred;
+}
+
+.delete-form {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.button-edit, .button-delete {
+    height: 30px; /* Sesuaikan tinggi supaya sejajar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    width: 100%;
+    max-width: 300px; /* Sesuaikan dengan kebutuhan */
+    box-sizing: border-box;
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Styling for links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Adjustments for mobile */
+@media (max-width: 600px) {
+    .container {
+        max-width: 95%;
+        padding: 15px;
+    }
+}
