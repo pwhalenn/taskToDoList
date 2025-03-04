@@ -8,6 +8,6 @@ router.get("/", taskController.getTasks); // Mengambil tugas
 router.post("/", validateTask, taskController.createTask); // Menambahkan tugas
 router.get("/edit/:id", taskController.editTaskPage); // Menampailkan edit
 router.post("/edit/:id", validateTask, taskController.updateTask); // update tugas
-router.delete("/delete/:id", taskController.deleteTask);  // delete tugas
+router.post("/delete/:id", taskController.deleteTask);  // delete tugas
 
 module.exports = router;
