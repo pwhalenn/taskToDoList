@@ -41,12 +41,15 @@ const authController = {
       res.status(500).json({ message: "Login failed" });
     }
   },
-  logout: async (req, res) => {
-    try {
-      res.json({ message: "Logout successful" });
-    } catch (err) {
-      res.status(500).json({ message: "Logout failed" });
-    }
+  logout: (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Logout error:", err);
+            return res.status(500).json({ message: "Logout failed" });
+        }
+        res.clearCookie("token"); 
+        res.redirect("/auth/login");
+    });
   },
 };
 

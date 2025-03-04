@@ -7,6 +7,25 @@
     --font-family: 'Poppins', sans-serif;
 }
 
+nav {
+    width: 80%;
+    padding: 16px 8px;
+}
+
+nav h2 {
+    margin: 0px;
+    align-self: center;
+}
+
+nav button {
+ width: 40%;
+ margin-left: 1460px;   
+}
+
+nav form {
+    width: 20%;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--background-color);
