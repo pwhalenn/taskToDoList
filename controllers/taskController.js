@@ -8,6 +8,7 @@ const taskController = {
     const userId = req.user.id;
     try {
       const id = await Task.create(userId, title, category, deadline, status);
+      res.redirect("/tasks");
     } catch (err) {
       res.status(500).json({ message: "Task creation failed" });
     }
