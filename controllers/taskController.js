@@ -26,20 +26,6 @@ const taskController = {
     }
   },
 
-  // Ke edit forum
-  editTaskPage: async (req, res) => {
-    try {
-      const task = await Task.findById(req.params.id);
-      if (!task) {
-        return res.status(404).send("Task not found");
-      }
-      res.render("tasks/edit", { task });
-    } catch (err) {
-      console.error("Error saat menampilkan halaman edit:", err);
-      res.status(500).send("Failed to load edit page");
-    }
-  },
-
   // Simpan update tasknya
   updateTask: async (req, res) => {
     const { id } = req.params;

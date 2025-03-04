@@ -65,17 +65,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/tasks" method="POST">
-                        <div class="mb-3">
+                    <form action="/tasks" method="POST" class="form-create-edit">
+                        <div class="input-group">
                             <input type="text" name="title" class="form-control" placeholder="Nama Tugas" required />
                         </div>
-                        <div class="mb-3">
+                        <div class="input-group">
                             <input type="text" name="category" class="form-control" placeholder="Kategori" required />
                         </div>
-                        <div class="mb-3">
+                        <div class="input-group">
                             <input type="date" name="deadline" class="form-control" required />
                         </div>
-                        <div class="mb-3">
+                        <div class="input-group">
                             <input type="text" name="status" class="form-control" placeholder="Status" required />
                         </div>
                         <button type="submit" class="button-form">Simpan</button>
@@ -94,18 +94,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editTaskForm" method="POST">
+                    <form id="editTaskForm" method="POST" class="form-create-edit">
                         <input type="hidden" id="editTaskId" name="id" />
-                        <div class="mb-3">
+                        <div class="input-group">
                             <input type="text" id="editTitle" name="title" class="form-control" required />
                         </div>
-                        <div class="mb-3">
+                        <div class="input-group">
                             <input type="text" id="editCategory" name="category" class="form-control" required />
                         </div>
-                        <div class="mb-3">
+                        <div class="input-group">
                             <input type="date" id="editDeadline" name="deadline" class="form-control" required />
                         </div>
-                        <div class="mb-3">
+                        <div class="input-group">
                             <input type="text" id="editStatus" name="status" class="form-control" required />
                         </div>
                         <button type="submit" class="button-form">Update</button>
@@ -116,7 +116,6 @@
     </div>
 
     <script>
-        // Menangani tombol edit untuk memuat data ke dalam modal
         document.querySelectorAll('.edit-button').forEach(button => {
             button.addEventListener('click', function () {
                 document.getElementById('editTaskId').value = this.dataset.id;
@@ -125,7 +124,6 @@
                 document.getElementById('editDeadline').value = this.dataset.deadline;
                 document.getElementById('editStatus').value = this.dataset.status;
                 
-                // Update action form sesuai ID task yang dipilih
                 document.getElementById('editTaskForm').action = `/tasks/edit/${this.dataset.id}`;
             });
         });

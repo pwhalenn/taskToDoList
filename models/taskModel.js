@@ -2,7 +2,7 @@ const db = require("../config/db");
 
 const Task = {
   // Menambahkan tugas baru ke database
-    create: async (userId, title, category, status, deadline) => {
+    create: async (userId, title, category, deadline, status ) => {
       await db
         .promise()
         .query(

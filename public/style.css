@@ -50,24 +50,9 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
     width: 100%;
 }
-
-.button-form {
-    display: block;
-    width: auto;
-    width: 100%;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 10px;
-    text-align: center;
-    margin: 10px auto;
-}
-
 
 input, button {
     width: 100%;
@@ -153,12 +138,6 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-input {
-    width: 100%;
-    max-width: 300px; /* Sesuaikan dengan kebutuhan */
-    box-sizing: border-box;
 }
 
 /* Table styling */
